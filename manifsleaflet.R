@@ -7,7 +7,7 @@ library(htmlwidgets)
 
 # TITLE & SOURCES
 
-title <- tags$div(includeCSS("css/maptitle.css"), HTML("<i>1,5 MILLIONS DE MANIFESTANT.E.S LE 5 DÉCEMBRE CONTRE LA RÉFORME DES RETRAITES</i>"))  
+title <- tags$div(includeCSS("css/maptitle.css"), HTML("<i>1,5 MILLION DE MANIFESTANT.E.S LE 5 DÉCEMBRE CONTRE LA RÉFORME DES RETRAITES</i>"))  
 source <- tags$div(includeCSS("css/mapnote.css"), HTML(paste0("Cartographie : <b>Nicolas LAMBERT, 2019</b> - ","Sources : https://mobilisations-en-france.cgt.fr/news/map & contributions facebook & twitter")))
 contrib <- tags$div(includeCSS("css/contrib.css"), HTML("<a href='form.html'>[Ajoutez des données]</a>"))  
 
@@ -21,7 +21,7 @@ manif <- read.csv("data/manif.csv", stringsAsFactors = F)
 # CIRCLE SIZES
 
 var <- "nb5dec"
-k <- 0.07
+k <- 0.15
 manif$size <- sqrt(manif[,var]*k / pi)
 manif <- manif[order(manif$size, decreasing = TRUE), ]
 
