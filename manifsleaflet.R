@@ -60,7 +60,7 @@ m <- addCircleMarkers(map = m,
                       radius = manif$size, weight = 1, 
                       stroke = T, opacity = 100,
                       fill = T, fillColor = "#e4072f", 
-                      fillOpacity = 100,
+                      fillOpacity = 90,
                       popup = manif$labelhtml,
                       color = "white")
 m
