@@ -8,32 +8,41 @@ library(htmlwidgets)
 # TITLE & SOURCES
 
 title <- tags$div(includeCSS("css/maptitle.css"), HTML("<i>1,5 MILLION DE MANIFESTANT.E.S LE 5 DÉCEMBRE CONTRE LA RÉFORME DES RETRAITES</i>"))  
-source <- tags$div(includeCSS("css/mapnote.css"), HTML(paste0("Cartographie : <b>Nicolas LAMBERT, 2019</b> - ","Sources : https://mobilisations-en-france.cgt.fr/news/map & contributions facebook & twitter")))
+source <- tags$div(includeCSS("css/mapnote.css"), HTML(paste0("Cartographie : <b>Nicolas LAMBERT, 2019</b> - ","Sources : CGT & presse régionale")))
 contrib <- tags$div(includeCSS("css/contrib.css"), HTML("<a href='form.html'>[Ajoutez des données]</a>"))  
 
 
 # DATA
 
-manif <- read.csv("data/manif.csv", stringsAsFactors = F)
+manif <- read.csv("data/manif5dec.csv", stringsAsFactors = F)
 
 
 
 # CIRCLE SIZES
 
-var <- "nb5dec"
+var <- "nb"
 k <- 0.15
 manif$size <- sqrt(manif[,var]*k / pi)
 manif <- manif[order(manif$size, decreasing = TRUE), ]
 
 # LABEL
 
+for (i in 1 : length(manif$source)){
+  if(is.na(manif$source[i])){manif$source[i] <- "Données non sourcée "}
+  
+}
+
 manif$labelhtml <- paste0(
   "<div width='300px' align='center'>",
-  "<h2>",manif$Ville,
-  "</h2>",
-  "<b>",manif$nb5dec," manifestant.e.s</b>",
+  "<h1>",toupper(manif$Ville),
+  "</h1><hr/>",
+  "<h2>",manif$nb," manifestant.e.s</h2>",
+  "<hr/><br/><i>Source des données : <br/><a href = ",manif$source," target = '_BLANK'>",manif$source,"</a></i>",
   "</div>"
 )
+
+
+
 
 # LEAFLET MAP
 
