@@ -32,11 +32,14 @@ for (i in 1 : length(manif$source)){
   
 }
 
+
+
+
 manif$labelhtml <- paste0(
   "<div width='300px' align='center'>",
   "<h1>",toupper(manif$Ville),
   "</h1><hr/>",
-  "<h2>",manif$nb," manifestant.e.s</h2>",
+  "<h2>",formatC(manif$nb, big.mark=" ")," manifestant.e.s</h2>",
   "<hr/><br/><i>Source des données : <br/><a href = ",manif$source," target = '_BLANK'>",manif$source,"</a></i>",
   "</div>"
 )
